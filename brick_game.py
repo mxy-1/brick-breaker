@@ -4,7 +4,7 @@ from settings import Settings
 from paddle import Paddle
 from ball import Ball
 from brick import Brick
-from brick import create_bricks, check_brick_collision, update_bricks, update_score
+from brick import create_bricks, check_brick_collision
 
 def run_game():
     pygame.init()
@@ -12,13 +12,13 @@ def run_game():
     window = pygame.display.set_mode((brick_settings.SCREEN_WIDTH, brick_settings.SCREEN_HEIGHT))
     window.fill(brick_settings.BG_COLOUR)
     pygame.display.set_caption("brick")
-    text = pygame.font.Font(r"\Users\mayho\PycharmProjects\pythonProject\brick\Pixeltype.ttf", 36)
+    text = pygame.font.Font(r"Pixeltype.ttf", 36)
     paddle = Paddle(brick_settings, window)
 
     ball = Ball(brick_settings, window)
-    lives = 10
+    lives = 3
     rows = 1
-
+    score = 0
     bricks = create_bricks(rows)
     clock = pygame.time.Clock()
     run = True
@@ -35,16 +35,16 @@ def run_game():
                     lives -= 1
 
         ball.move(brick_settings, paddle)
-        check_brick_collision(bricks, ball)
+        score = check_brick_collision(bricks, ball, score)
 
         # Create new row of bricks
         if not bricks:
             if rows < 5:
                 rows += 1
             # Increase ball velocity
-            if rows >= 5:
-                ball.X_VELOCITY += 1
-                ball.Y_VELOCITY += 1
+            if rows >= 2:
+                ball.X_VELOCITY *= 1.1
+                ball.Y_VELOCITY *= 1.1
             bricks = create_bricks(rows)
 
         # Clear window and draw updated paddle.
@@ -55,9 +55,9 @@ def run_game():
 
         paddle.draw_paddle()
         lives_text = text.render(f"Lives: {lives}", False, "grey")
-        #score_text = text.render(f"Score: {score}", False, "grey")
+        score_text = text.render(f"Score: {score}", False, "grey")
         window.blit(lives_text, (20, 590))
-        #window.blit(score_text, (880, 590))
+        window.blit(score_text, (880, 590))
         ball.draw_ball()
 
         pygame.display.flip()

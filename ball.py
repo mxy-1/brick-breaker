@@ -5,8 +5,8 @@ class Ball():
         self.screen = screen
         self.RADIUS = 15
         self.COLOUR = (160, 165, 160)
-        self.X_VELOCITY = 6
-        self.Y_VELOCITY = 6
+        self.X_VELOCITY = 7
+        self.Y_VELOCITY = 7
         self.START_X = brick_settings.SCREEN_WIDTH / 2
         self.START_Y = brick_settings.SCREEN_HEIGHT // 3
 

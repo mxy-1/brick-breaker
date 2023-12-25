@@ -48,36 +48,18 @@ def create_bricks(rows):
     return bricks
 
 
-def check_brick_collision(bricks, ball):
+def check_brick_collision(bricks, ball, score):
     for brick in bricks.copy():
         if (ball.x + ball.RADIUS >= brick.rect.topleft[0]) and (ball.x <= brick.rect.topright[0] + ball.RADIUS) \
                 and (ball.y + ball.RADIUS >= brick.y) and (ball.y - ball.RADIUS <= brick.y):
             bricks.remove(brick)
             if ball.Y_VELOCITY < 0:
                 ball.Y_VELOCITY *= -1
-
-def update_score(score):
-    score += 1
-    return score
+            score += 1
+    return score 
+        
 
 def new_bricks(bricks):
     if not bricks:
         create_bricks()
-
-def update_bricks():
-    x = 10
-    y = 10
-    bricks = []
-    rows = 1
-
-    if len(bricks) == 0:
-        for _ in range(rows):
-            for _ in range(9):
-                bricks.append(Brick(x, y))
-                x += 110
-                if not bricks:
-                    rows += 1
-            y += 50
-    return bricks
-
 

@@ -5,7 +5,7 @@ class Paddle(Sprite):
     def __init__(self, brick_settings, screen):
         super().__init__()
         self.screen = screen
-        self.paddle_width = 180 # 180
+        self.paddle_width = 180 
         self.paddle_height = 30
         self.colour = (85, 90, 150)
         # Place paddle on specific location.
