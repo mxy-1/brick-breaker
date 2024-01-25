@@ -1,7 +1,7 @@
 # Brick breaker
 
 ## Description
-A brick breaker game created using Pygame. Players haves 3 lives to break as many bricks as they can.
+A brick breaker game created using Pygame. Players have 3 lives to break as many bricks as they can.
 
 ## Requirements
 Python 3.12 or above. For the latest version, visit: https://www.python.org/downloads/
